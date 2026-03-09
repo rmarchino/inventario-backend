@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { loginCtrl } from "../controllers/auth.controller";
+import { loginCtrl, loginPinCodeCtrl, registerCtrl } from "../controllers/auth.controller";
 
 const router = Router();
 
-router.post("/", loginCtrl);
+router.post("/login", loginCtrl);
+router.post("/login-pin", loginPinCodeCtrl);
+router.post("/register", registerCtrl);
 
 export default { router };
