@@ -7,6 +7,7 @@ import morgan from "morgan";
 import logger from "./shared/utils/logger";
 
 import autModule from "./modules/auth";
+import userModule from "./modules/users";
 import productModule from "./modules/products";
 
 const app = express();
@@ -19,6 +20,8 @@ app.use(morgan("dev"));
 
 // Rutas
 app.use("/api", autModule);
+app.use("/api", userModule);
+
 app.use("/api", productModule);
 
 app.get("/ping", (req, res) => {
