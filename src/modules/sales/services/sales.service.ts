@@ -6,22 +6,22 @@ const saleRepository = AppDataSource.getRepository(Sale);
 const cashSessionRepository = AppDataSource.getRepository(CashSession);
 
 const getTodaySummary = async (userId: string) => {
-  // 1. Buscar la caja abierta del usuario
-  const openSessionCash = await cashSessionRepository.findOne({
+  //1. Buscar la caja abierta del usuario
+  const openSession = await cashSessionRepository.findOne({
     where: { userId, status: CashStatus.OPEN },
   });
 
-  // Si no hay caja abierta, no hay ventas para mostrar
-  if (!openSessionCash) {
+  // Si no hay caja abierta, el resumen es 0
+  if (!openSession) {
     return { salesCount: 0, totalAmount: 0 };
   }
 
-  // 2. Sumar las ventas de  ESA sessión de caja específica
+  // 2. Sumar las ventas de ESA session de caja específica
   const result = await saleRepository
     .createQueryBuilder("sale")
     .select("COUNT(sale.id)", "salesCount")
-    .addSelect("SUM(sale.total)", "totalAmount")
-    .where("sale.cashSessionId = :sessionId", { sessionId: openSessionCash.id })
+    .addSelect("SUM(sale.totalAmount)", "totalAmount")
+    .where("sale.cashSessionId = :sessionId", { sessionId: openSession.id })
     .andWhere("sale.status = :status", { status: "COMPLETED" })
     .getRawOne();
 
@@ -32,4 +32,4 @@ const getTodaySummary = async (userId: string) => {
 };
 
 
-export { getTodaySummary }
+export { getTodaySummary };

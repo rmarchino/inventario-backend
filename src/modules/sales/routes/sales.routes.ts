@@ -4,6 +4,6 @@ import { checkJwt } from "../../../middlewares/session";
 
 const router = Router();
 
-router.get("/today-summary", [checkJwt], getTodaySummaryCtrl);
+router.get("/today-summary", checkJwt, getTodaySummaryCtrl);
 
-export default router;
+export default { router };

@@ -8,10 +8,9 @@ const getTodaySummaryCtrl = async (req: RequestExt, res: Response) => {
     const userId = (req.user as { id: string }).id;
     const response = await getTodaySummary(userId);
     res.send(response);
-  } catch (error) {
-    handleHttp(res, "ERROR_GET_TODAY_SUMMARY", error);
+  } catch (e) {
+    handleHttp(res, "ERROR_GET_TODAY_SUMMARY", e);
   }
 };
-
 
 export { getTodaySummaryCtrl };
