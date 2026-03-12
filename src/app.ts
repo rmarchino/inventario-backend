@@ -23,7 +23,6 @@ app.use(morgan("dev"));
 app.use("/api", autModule);
 app.use("/api", userModule);
 app.use("/api", cashSessionModule);
-
 app.use("/api", productModule);
 
 app.get("/ping", (req, res) => {

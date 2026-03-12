@@ -1,10 +1,11 @@
 import { Router } from "express";
-import {ProductController} from "../controllers/product.controller";
+import {searchPosProductCtrl} from "../controllers/products.controller";
+import { checkJwt } from "../../../middlewares/session";
+
 
 const router = Router();
 
-router.post("/", ProductController.create);
-router.get("/", ProductController.list);
+router.get("/pos-search", checkJwt, searchPosProductCtrl);
 
 
 export default router;
