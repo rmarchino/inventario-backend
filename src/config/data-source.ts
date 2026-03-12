@@ -15,7 +15,10 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: false,
 
-  entities: [__dirname + "/../modules/**/entities/*{ts,js}"],
-  migrations: [__dirname + "/../migrations/*{ts,js}"],
-  subscribers: [__dirname + "/../subscribers/*{ts,js}"],
+  entities: ["src/modules/**/entities/*{.ts,.js}"],
+  migrations: ["src/migrations/*{.ts,.js}"],
+
+  //entities: [__dirname + "/../modules/**/entities/*{ts,js}"],
+  //migrations: [__dirname + "/../migrations/*{ts,js}"],
+  //subscribers: [__dirname + "/../subscribers/*{ts,js}"],
 });

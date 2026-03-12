@@ -15,7 +15,7 @@ import { Customer } from "../../customers/entities/customer.entity";
 import { SaleItem } from "./sale-item.entity";
 import { SunatDocument } from "../../sunat/entities/sunat-document.entity";
 
-@Entity("Sales")
+@Entity("sales")
 export class Sale {
   @PrimaryGeneratedColumn("uuid")
   id!: string;

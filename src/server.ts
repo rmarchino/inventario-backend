@@ -8,14 +8,20 @@ import logger from "./shared/utils/logger";
 
 const PORT = process.env.PORT || 3000;
 
-AppDataSource.initialize()
-  .then(() => {
-    logger.info("✅ Base de Datos conectada con éxito")
+async function startServer() {
+  try {
+    await AppDataSource.initialize();
+    logger.info("✅ Base de Datos conectada con éxito");
 
     app.listen(PORT, () => {
       logger.info(`🚀 Servidor corriendo en http://localhost:${PORT}`);
     });
-  })
-  .catch((error) => {
-    logger.error("❌ Error al conectar a la Base de Datos:", error);
-  });
+  } catch (error) {
+    logger.error("❌ Error al iniciar el servidor:", error);
+
+    process.exit(1);
+  }
+}
+
+startServer();
+
