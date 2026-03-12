@@ -1,0 +1,11 @@
+# Node modules
+/node_modules
+/dist
+coverage
+.env
+
+# Optional: Ignore IDE/editor specific files
+/.vscode
+
+logs/
+*.log
